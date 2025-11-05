@@ -141,7 +141,8 @@
 ## 起動方法
 - 前提: JDK 25 がインストールされていること。
 - 実行（Wrapper同梱）:
-  - Windows: `./gradlew.bat run`
+  - Windows: `./gradlew-utf8.bat run`（推奨。UTF-8対策付き）
+    - 通常の `./gradlew.bat run` でも可（環境により文字化けの可能性あり）
   - macOS/Linux: `./gradlew run`
 - ビルド: `./gradlew clean build`
 - 注意: 実行時にJDK 25特有の警告が出る場合がありますが動作に支障はありません。
@@ -177,4 +178,3 @@
 - クリティカル、状態異常、アイテム、連戦モード拡張
 - 難易度設定（敵ポイント/命中基礎の変更）
 - BGM/SE、アニメ強化、セーブ/ロード
-
