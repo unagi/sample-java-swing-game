@@ -24,8 +24,11 @@ application {
 distributions {
     main {
         contents {
-            from('README.md')
-            from('AGENTS.md')
+            // エンドユーザー向けREADMEを配布物に同梱（ファイル名はREADME.mdにリネーム）
+            from('README-DIST.md') {
+                rename { 'README.md' }
+            }
+            // 開発者向けAGENTS.mdは配布物には含めない
         }
     }
 }
@@ -36,4 +39,3 @@ tasks.register('packageDist') {
     description = '配布用Zipを作成（build/distributions/*.zip）'
     dependsOn 'clean', 'distZip'
 }
-
