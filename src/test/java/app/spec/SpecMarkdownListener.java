@@ -1,5 +1,6 @@
 package app.spec;
 
+import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.TestSource;
 import org.junit.platform.engine.support.descriptor.ClassSource;
 import org.junit.platform.launcher.*;
@@ -89,4 +90,3 @@ public class SpecMarkdownListener implements TestExecutionListener {
         Files.writeString(out, sb.toString(), StandardCharsets.UTF_8);
     }
 }
-
