@@ -42,7 +42,11 @@ tasks.register('packageDist') {
 
 // テスト（JUnit 5）
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    // JUnit 5 (BOMでバージョンを一元管理)
+    testImplementation platform('org.junit:junit-bom:5.11.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Gradle 9系ではJUnit Platform Launcherを明示的に追加する
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 test {
