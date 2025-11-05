@@ -116,3 +116,11 @@ application {
 
 ---
 縺薙・莉墓ｧ倥〒騾ｲ繧√∪縺吶ょｮ溯｣・・髮帛ｽ｢・・radle繝励Ο繧ｸ繧ｧ繧ｯ繝医→譛蟆輯wing逕ｻ髱｢・区姶髣倥Ο繧ｸ繝・け・峨ｒ逕滓・縺励∪縺励ｇ縺・°・・
+
+## 配布と実行（簡易）
+- 配布Zipの作成: ./gradlew packageDist 
+  - 生成物: uild/distributions/tri-battle-gauntlet.zip 
+- ローカルインストール: ./gradlew installDist 
+  - 実行スクリプト: uild/install/tri-battle-gauntlet/bin/tri-battle-gauntlet(.bat) 
+- 簡易起動ヘルパー: リポジトリ直下の un.bat（Windows）/ un.sh（macOS/Linux） 
+  - un.bat または ./run.sh を実行すると自動で installDist 後に起動します。

@@ -20,3 +20,20 @@ application {
     mainClass = 'app.App'
 }
 
+// 配布物にREADMEやAGENTS.mdを同梱
+distributions {
+    main {
+        contents {
+            from('README.md')
+            from('AGENTS.md')
+        }
+    }
+}
+
+// ワンコマンドで配布Zipを作るタスク
+tasks.register('packageDist') {
+    group = 'distribution'
+    description = '配布用Zipを作成（build/distributions/*.zip）'
+    dependsOn 'clean', 'distZip'
+}
+
