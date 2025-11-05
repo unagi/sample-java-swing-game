@@ -10,13 +10,31 @@
 - Gradle: Wrapper 9.0 を同梱。必ず `gradlew`/`gradlew.bat` を使用してください。
 - ビルドスクリプト: Groovy DSL（`build.gradle` / `settings.gradle`）。
 - 実行:
-  - Windows: `./gradlew.bat run`
+  - Windows: `./gradlew-utf8.bat run`（推奨）または `./gradlew-utf8.ps1 run`
   - macOS/Linux: `./gradlew run`
 - 配布:
   - Zip作成: `./gradlew packageDist` → `build/distributions/tri-battle-gauntlet.zip`
   - ローカルインストール: `./gradlew installDist`
-  - 直起動ヘルパー: `run.bat` / `run.sh`
-- エンコーディング: すべて UTF-8。Javaコンパイルは `-Dfile.encoding=UTF-8` を設定済み。
+  - 起動ヘルパー: `run.bat` / `run.sh`
+- エンコーディング: すべて UTF-8。Java実行時は `-Dfile.encoding=UTF-8` を付与。
+
+## PowerShellで文字化けしない秘訣（重要）
+- 実行はUTF-8ラッパー経由を推奨
+  - PowerShell: `./gradlew-utf8.ps1 test` / `run`
+  - CMD/PowerShell: `./gradlew-utf8.bat test` / `run`
+- コンソール出力をUTF-8に設定（PowerShell）
+  - `[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding`
+- Java/GradleにUTF-8を伝える
+  - `$env:JAVA_TOOL_OPTIONS = "$($env:JAVA_TOOL_OPTIONS) -Dfile.encoding=UTF-8 --enable-native-access=ALL-UNNAMED"`
+  - `$env:GRADLE_OPTS      = "$($env:GRADLE_OPTS) -Dfile.encoding=UTF-8"`
+- ファイル入出力（PowerShell）でUTF-8を明示
+  - 読み込み: `Get-Content -Encoding UTF8 <path>`
+  - 書き込み: `Set-Content -Encoding UTF8 <path> <text>` / `Out-File -Encoding utf8 <path>`
+  - .NET API例: `[System.IO.File]::WriteAllText(<path>, <text>, [System.Text.UTF8Encoding]::new($false))`
+- 文字化けの典型原因と回避
+  - 既定コードページ（CP932/OEM）でのパイプ/リダイレクト → 上記のUTF-8設定を先に実施
+  - BOMの有無不一致 → UTF-8を明示、必要に応じてBOM付与/なしを使い分け
+  - 非UTF-8フォント/端末 → 日本語対応フォント＋UTF-8コードページの端末を使用
 
 ## フォルダ構成
 - `src/main/java/app/`
