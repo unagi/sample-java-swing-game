@@ -39,3 +39,12 @@ tasks.register('packageDist') {
     description = '配布用Zipを作成（build/distributions/*.zip）'
     dependsOn 'clean', 'distZip'
 }
+
+// テスト（JUnit 5）
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+}
+
+test {
+    useJUnitPlatform()
+}
