@@ -2,9 +2,21 @@
 .gradle/
 build/
 out/
+bin/
+classes/
 
 # IDE
 .idea/
 *.iml
 .vscode/
+.settings/
+.classpath
+.project
 
+# Java artifacts
+*.class
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
